@@ -10,6 +10,7 @@ import { satisfies } from 'semver';
 import { engines } from '../package.json';
 
 import { AppModule } from './app.module';
+import { CandidateModule } from 'candidates/candidate.module';
 
 async function bootstrap() {
   install();
@@ -30,14 +31,14 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
 
-  // const config = new DocumentBuilder()
-  //   .setTitle('Apps')
-  //   .build();
-  // const document = SwaggerModule.createDocument(app, config, {
-  //   include: [AppsModule],
-  //   deepScanRoutes: true,
-  // });
-  // SwaggerModule.setup('api/docs', app, document);
+  const config = new DocumentBuilder()
+    .setTitle('Apps')
+    .build();
+  const document = SwaggerModule.createDocument(app, config, {
+    include: [CandidateModule],
+    deepScanRoutes: true,
+  });
+  SwaggerModule.setup('api/docs', app, document);
 
   app.enableCors({
     origin: '*',
