@@ -34,3 +34,15 @@ export function transformer<T, V extends { new (
   });
   return result as unknown;
 }
+
+export const shuffle = <Text extends number | string>(text: Text): Text => {
+  const string = typeof text === 'string'
+  ? text
+  : text.toString();
+  const shuffledText = [...string].sort(()=>Math.random()-.5).join('');
+
+  if (typeof text === 'number') {
+    return Number.parseInt(shuffledText) as Text
+  }
+  return shuffledText as Text;
+}
