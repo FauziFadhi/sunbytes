@@ -1,10 +1,9 @@
 import { Candidate } from "@models/core/Candidate";
-import { BadRequestException, Logger } from "@nestjs/common";
+import { BadRequestException } from "@nestjs/common";
 import { ICandidateCreate } from "./candidate.interface";
 
 export class CandidateService {
   constructor(
-    private readonly logger: Logger,
   ) {
 
   }
@@ -17,7 +16,7 @@ export class CandidateService {
       owner: dto.owner,
     })
     .catch((e) => {
-      this.logger.error("FAILED TO CREATE CANDIDATE", e.stack, "DATABASE ERROR")
+      console.error("FAILED TO CREATE CANDIDATE", e.stack, "DATABASE ERROR")
       throw new BadRequestException('Failed to create new candidate.');
     })
 
