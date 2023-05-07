@@ -9,19 +9,20 @@ export const circularToJSON = (circular: unknown) => JSON.parse(JSON.stringify(c
  * @param obj
  * @param options
  */
-export function transformer<T, V>(
-  cls: { new (...args: unknown[]): T },
-  obj: V[],
-  options?: ClassTransformOptions & { raw?: boolean },
-): T[];
-export function transformer<T, V>(
-  cls: { new (...args: unknown[]): T },
-  obj: V,
+export function transformer<T, V extends { new (...args: unknown[]): T }>(
+  cls: V,
+  obj: ConstructorParameters<V>[0],
   options?: ClassTransformOptions & { raw?: boolean },
 ): T;
-export function transformer<T, V>(
-  cls: { new (...args: unknown[]): T },
-  obj: V | V[],
+export function transformer<T, V extends { new (...args: unknown[]): T }>(
+  cls: V,
+  obj: ConstructorParameters<V>[0][],
+  options?: ClassTransformOptions & { raw?: boolean },
+): T[];
+export function transformer<T, V extends { new (
+  ...args: unknown[]): T }>(
+  cls: V,
+  obj: ConstructorParameters<V>[0] | ConstructorParameters<V>[0][],
   options?: ClassTransformOptions & { raw?: boolean },
 ) {
   const result = plainToInstance(cls, options?.raw ? obj : circularToJSON(obj), {
