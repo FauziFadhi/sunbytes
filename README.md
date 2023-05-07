@@ -5,4 +5,4 @@
 - run `npm run build && npm run start` or `npm run start:dev`
 
 ### Swagger
-- open `http://localhost:3000` change your port based on env settings
+- open `http://localhost:3000/api/docs` change your port based on env settings
