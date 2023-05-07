@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   flatten,
   Injectable,
   PipeTransform,
@@ -24,7 +25,7 @@ export class CustomValidationPipe extends ValidationPipe implements PipeTransfor
       });
 
       console.log(mappedErrors);
-      return new UnprocessableEntityException('validation failed.');
+      return new BadRequestException('validation failed.');
     };
   }
 
