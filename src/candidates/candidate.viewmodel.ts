@@ -2,7 +2,7 @@ import { Expose } from "class-transformer";
 
 export class CandidateVm {
   @Expose()
-  owner: string;
+  owner: number;
 
   @Expose()
   name: string;
